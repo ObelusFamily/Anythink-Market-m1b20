@@ -10,7 +10,9 @@
     "dev": "nodemon ./app.js",
     "seeds": "node ./scripts/seeds.js",
     "test": "newman run ./tests/api-tests.postman.json -e ./tests/env-api-tests.postman.json",
-    "stop": "lsof -ti :3000 | xargs kill"
+    "stop": "lsof -ti :3000 | xargs kill",
+    "format": "yarn prettier --write .",
+    "lint": "yarn eslint . && yarn prettier --check ."
   },
   "dependencies": {
     "axios": "^0.25.0",
@@ -36,7 +38,27 @@
     "underscore": "1.8.3"
   },
   "devDependencies": {
+    "eslint": "^8.22.0",
+    "eslint-config-prettier": "^8.5.0",
     "newman": "^3.8.2",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "prettier": "^2.7.1"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": "latest"
+    },
+    "env": {
+      "node": true,
+      "es6": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "prettier"
+    ],
+    "rules": {
+      "no-unused-vars": "warn",
+      "no-empty": "warn"
+    }
   }
 }
